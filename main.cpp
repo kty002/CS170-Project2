@@ -20,8 +20,12 @@ int main() {
 
     if (choice == 1) {
         problem.forward_selection(total_features);
-    } else {
-        std::cout << "Backward Elimination is not implemented yet.\n";
+    } 
+    else if (choice == 2) {
+        problem.backward_elimination(total_features);
+    }
+    else if (choice == 3) {
+        problem.custom_algorithm(total_features);
     }
 
     return 0;
