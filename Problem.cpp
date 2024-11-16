@@ -43,7 +43,7 @@ void Problem::forward_selection(int total_features) {
                 best_node = Node(new_set, score);
             }
         }
-        
+        std::cout << "\n";
 
         if (best_node.score > current_best_score) {
             current_best_set = best_node.features;
@@ -58,11 +58,13 @@ void Problem::forward_selection(int total_features) {
     std::cout << "Finished search!! The best feature subset is " << Node(current_best_set).to_string() << ", which has an accuracy of " << current_best_score << "%\n";
 }
 
+//add backward elim
 void Problem::backward_elimination(int total_features) {
     std::cout << "Beginning Backward Elimination...\n";
     return;
 }
 
+//ad custom algorithm
 void Problem::custom_algorithm(int total_features) {
     std::cout << "Beginning Custom Algorithm...\n";
     return;
