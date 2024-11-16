@@ -11,6 +11,8 @@ double Problem::evaluate(const std::vector<int>& feature_set) {
 
     double raw_score = dis(gen);
     // return dis(gen);
+
+    //rounds to tenths place
     return std::round(raw_score * 10.0) / 10.0;
 }
 

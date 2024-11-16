@@ -5,6 +5,8 @@ int main() {
     std::cout << "Welcome to Bertie Woosters (change this to your name) Feature Selection Algorithm.\n";
     std::cout << "Please enter total number of features: ";
     
+    //5 = f1, f2, f3, f4, f5
+    //1 = f1
     int total_features;
     std::cin >> total_features;
 
@@ -13,6 +15,7 @@ int main() {
     std::cout << "2. Backward Elimination\n";
     std::cout << "3. Bertie's Special Algorithm\n";
 
+    //selects the algorithm
     int choice;
     std::cin >> choice;
 
@@ -26,6 +29,9 @@ int main() {
     }
     else if (choice == 3) {
         problem.custom_algorithm(total_features);
+    }
+    else {
+        std::cout << "I have no idea what algorithm to run\n";
     }
 
     return 0;
