@@ -60,10 +60,58 @@ void Problem::forward_selection(int total_features) {
     std::cout << "Finished search!! The best feature subset is " << Node(current_best_set).to_string() << ", which has an accuracy of " << current_best_score << "%\n";
 }
 
-//add backward elim
+
 void Problem::backward_elimination(int total_features) {
-    std::cout << "Beginning Backward Elimination...\n";
-    return;
+    std::cout << "Beginning Backward Elimination...\n\n";
+
+    // Start with the full set of features
+    std::vector<int> current_best_set;
+    for (int feature = 1; feature <= total_features; ++feature) {
+        current_best_set.push_back(feature);
+    }
+
+    // Evaluate the full feature set
+    double current_best_score = evaluate(current_best_set);
+    std::cout << "  Using feature(s) " << Node(current_best_set).to_string()
+              << " accuracy is " << current_best_score << "%\n\n";
+
+    // Begin the backward elimination process
+    for (int level = total_features; level > 1; --level) {
+        Node best_node({}, -std::numeric_limits<double>::infinity());
+
+        // Try removing each feature and evaluate the new set
+        for (int feature : current_best_set) {
+            // Create a new set without the current feature
+            std::vector<int> new_set = current_best_set;
+            new_set.erase(std::remove(new_set.begin(), new_set.end(), feature), new_set.end());
+
+            // Evaluate the new feature set
+            double score = evaluate(new_set);
+            std::cout << "  Using feature(s) " << Node(new_set).to_string()
+                      << " accuracy is " << score << "%\n";
+
+            // Update the best node if the new score is better
+            if (score > best_node.score) {
+                best_node = Node(new_set, score);
+            }
+        }
+        std::cout << "\n";
+
+        // Decide whether to update the current best set
+        if (best_node.score > current_best_score) {
+            current_best_set = best_node.features;
+            current_best_score = best_node.score;
+            std::cout << "Feature set " << best_node.to_string()
+                      << " was best, accuracy is " << best_node.score << "%\n\n";
+        } else {
+            std::cout << "(Warning: Accuracy has decreased!)\n";
+            break;
+        }
+    }
+
+    // Final output
+    std::cout << "Finished search!! The best feature subset is " << Node(current_best_set).to_string()
+              << ", which has an accuracy of " << current_best_score << "%\n";
 }
 
 //ad custom algorithm
