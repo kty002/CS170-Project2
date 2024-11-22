@@ -2,7 +2,7 @@
 #include <iostream>
 
 int main() {
-    std::cout << "Welcome to Bertie Woosters (change this to your name) Feature Selection Algorithm.\n";
+    std::cout << "Welcome to [Your Name]'s Feature Selection Algorithm.\n";
     std::cout << "Please enter total number of features: ";
     
     //5 = f1, f2, f3, f4, f5
@@ -13,7 +13,8 @@ int main() {
     std::cout << "Type the number of the algorithm you want to run.\n";
     std::cout << "1. Forward Selection\n";
     std::cout << "2. Backward Elimination\n";
-    std::cout << "3. Bertie's Special Algorithm\n";
+    std::cout << "3. Bi-Directional Search (Custom Algorithm)\n";
+
 
     //selects the algorithm
     int choice;
@@ -31,7 +32,7 @@ int main() {
         problem.custom_algorithm(total_features);
     }
     else {
-        std::cout << "I have no idea what algorithm to run\n";
+        std::cout << "I have no idea what algorithm to run, please restart the program and select a valid algorithm.\n";
     }
 
     return 0;
