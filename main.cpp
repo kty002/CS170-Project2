@@ -2,7 +2,7 @@
 #include <iostream>
 
 int main() {
-    std::cout << "Welcome to [Your Name]'s Feature Selection Algorithm.\n";
+    std::cout << "Welcome to Pranay Thakur's Feature Selection Algorithm.\n";
     std::cout << "Please enter total number of features: ";
     
     //5 = f1, f2, f3, f4, f5
