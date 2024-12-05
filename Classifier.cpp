@@ -24,6 +24,7 @@ public:
             double distance = 0.0;
             for (size_t j = 0; j < test_instance.size(); ++j) {
                 distance += std::pow(test_instance[j] - training_data[i][j], 2);
+                // distance += (test_instance - training_data) * (test_instance - training_data)
             }
             distance = std::sqrt(distance);
             // distance = distance/distance;
@@ -36,3 +37,4 @@ public:
         return predicted_label;
     }
 };
+
