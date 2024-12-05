@@ -2,6 +2,9 @@
 #define VALIDATOR_CPP
 #include "Classifier.cpp"
 #include <vector>
+// #include <chrono> 
+// https://www.geeksforgeeks.org/measure-execution-time-function-cpp/
+// this might be helpful for tracking time
 
 class Validator {
 public:
@@ -31,6 +34,16 @@ public:
             if (predicted_label == labels[i]) {
                 ++correct_predictions;
         }
+        // cout << "Step " << i + 1 << "/" << total_instances;
+        // cout << "Predicted = " << predicted_label;
+        // cout << "Actual = " << labels[i];
+        //  if (predicted_label == labels[i]) {
+                // cout << "Correct = True";
+        // }
+        // else {
+        //     cout << "Correct = False";
+        // }
+        // cout << "Time spent on step: " << TimeSpentOnStep;
         }
 
         return static_cast<double>(correct_predictions) / data.size();

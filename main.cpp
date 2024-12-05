@@ -24,7 +24,7 @@ void ReadDataset(const std::string& filename, std::vector<std::vector<double>>& 
         std::vector<double> instance;
         double value;
         stream >> value;
-        labels.push_back(static_cast<int>(value));
+        labels.push_back(static_cast<int>(value)); //normalize values
 
         while (stream >> value) {
             instance.push_back(value);
@@ -33,8 +33,12 @@ void ReadDataset(const std::string& filename, std::vector<std::vector<double>>& 
     }
 }
 
+// STARTS WITH THE SMALL THEN LARGE DATASET, TRANSITIONS TO SELECTION ALGORITHM
+// NEEDS TO INCLUDE STEPS (display predicted and actual values, if predicted = actual then correct, if not then incorrect)
+// NEEDS TO INCLUDE TIME SPENT ON STEPS
+// DISPLAY BOTH WHEN DONE
 int main() {
-
+    //SMALL DATASET
      std::vector<std::vector<double>> data;
     std::vector<int> labels;
 
@@ -48,7 +52,7 @@ int main() {
 
     std::cout << "Accuracy with features {3, 5, 7}: " << accuracy_small * 100 << "%\n";
 
-    // Load small dataset
+    //LARGE DATASET
     std::vector<std::vector<double>> data2;
     std::vector<int> labels2;
     ReadDataset("large-test-dataset.txt", data2, labels2);
@@ -61,6 +65,11 @@ int main() {
     std::cout << "Accuracy with features {1, 15, 27}: " << accuracy_large * 100 << "%\n";
 
 
+
+    // uncomment return to end after running datasets
+    // return 1;
+
+    //START OF NORMAL FEATURE SELECTION
     std::cout << "Welcome to Pranay Thakur's Feature Selection Algorithm.\n";
     std::cout << "Please enter total number of features: ";
     

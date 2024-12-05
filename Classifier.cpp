@@ -37,4 +37,3 @@ public:
         return predicted_label;
     }
 };
-
