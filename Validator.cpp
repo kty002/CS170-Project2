@@ -2,6 +2,7 @@
 #define VALIDATOR_CPP
 #include "Classifier.cpp"
 #include <vector>
+#include <iostream>
 // #include <chrono> 
 // https://www.geeksforgeeks.org/measure-execution-time-function-cpp/
 // this might be helpful for tracking time
@@ -34,16 +35,21 @@ public:
             if (predicted_label == labels[i]) {
                 ++correct_predictions;
         }
-        // cout << "Step " << i + 1 << "/" << total_instances;
-        // cout << "Predicted = " << predicted_label;
-        // cout << "Actual = " << labels[i];
+        //step display in the works
+        // std::cout << "Step " << i + 1 << "/" << labels.size() << " " ;
+        // std::cout << "Predicted = " << predicted_label << " " ;
+        // std::cout << "Actual = " << labels[i] << " " ;
         //  if (predicted_label == labels[i]) {
-                // cout << "Correct = True";
+        //         std::cout << "Good";
         // }
         // else {
-        //     cout << "Correct = False";
+        //     std::cout << "Bad";
         // }
-        // cout << "Time spent on step: " << TimeSpentOnStep;
+        // std::cout << std::endl;
+
+
+        // time goes here
+        // std::cout << "Time spent on step: " << TimeSpentOnStep;
         }
 
         return static_cast<double>(correct_predictions) / data.size();
