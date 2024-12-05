@@ -1,4 +1,9 @@
 # CS170-Project2
 
-Need to add:
-2. Other 
+Part 1 Complete
+
+Part 2 In Progress
+- Add display for each step
+- Add time display for each step (finish step display first)
+
+Part 3 Not Started
