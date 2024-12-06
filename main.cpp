@@ -97,36 +97,37 @@ void test_classifier(std::string filename, std::vector<int> feature_subset) {
             training_data.push_back(reduced_instance);
             training_labels.push_back(labels[j]);
         }
-        std::cout << "Traning Classifier" << std::endl;
-        auto start_T = std::chrono::high_resolution_clock::now();
+        //std::cout << "Traning Classifier" << std::endl;
+        //auto start_T = std::chrono::high_resolution_clock::now();
         // Train the classifier on the training set
         classifier.Train(training_data, training_labels);
         // End timing
-        auto end_T = std::chrono::high_resolution_clock::now();
-        std::chrono::duration<double> elapsed_T = end_T - start_T;
-        std::cout << "Time spent Traning: " << elapsed_T.count() << " seconds\n";
+        //auto end_T = std::chrono::high_resolution_clock::now();
+        //std::chrono::duration<double> elapsed_T = end_T - start_T;
+        //std::cout << "Time spent Traning: " << elapsed_T.count() << " seconds\n";
 
         // Test on the left-out instance i
         std::vector<double> test_instance_reduced = extractFeatures(data[i], feature_subset);
-        std::cout << "Predicting Label using classifier" << std::endl;
+        //std::cout << "Prediting Label using classifier" << std::endl;
         auto start_P = std::chrono::high_resolution_clock::now();
         
         int predicted_label = classifier.Test(test_instance_reduced);
-        auto end_P = std::chrono::high_resolution_clock::now();
-        std::chrono::duration<double> elapsed_P = end_P - start_P;
-        std::cout << "Time spent Predicting: " << elapsed_P.count() << " seconds\n";
+        //auto end_P = std::chrono::high_resolution_clock::now();
+        //std::chrono::duration<double> elapsed_P = end_P - start_P;
+        //std::cout << "Time spent Predicting: " << elapsed_P.count() << " seconds\n";
 
         int actual_label = labels[i];
 
         // Display predicted and actual values
+        /*
         std::cout << "Test instance " << i << ": Predicted = " << predicted_label
-                  << ", Actual = " << actual_label;
+                  << ", Actual = " << actual_label;*/
 
         if (predicted_label == actual_label) {
-            std::cout << " [CORRECT]" << std::endl;
+            //std::cout << " [CORRECT]" << std::endl;
             correct_predictions++;
         } else {
-            std::cout << " [INCORRECT]" << std::endl;
+            //std::cout << " [INCORRECT]" << std::endl;
         }
     }
 
@@ -173,8 +174,8 @@ void test_validator() {
     std::vector<int> feature_subset_large = {1, 15, 27};
     double accuracy_large = validator2.Validate(data2, labels2, feature_subset_large);
     auto end2 = std::chrono::high_resolution_clock::now();
-    std::chrono::duration<double> elapsed2 = end2 - start2;
-    std::cout << "Time spent on validation: " << elapsed2.count() << " seconds\n";
+    std::chrono::duration<double> elapsed = end2 - start2;
+    std::cout << "Time spent on validation: " << elapsed.count() << " seconds\n";
    
     std::cout << "Accuracy with features {1, 15, 27}: " << accuracy_large * 100 << "%\n";
 
