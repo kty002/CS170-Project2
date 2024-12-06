@@ -60,11 +60,12 @@ void printVector(std::vector<int> v){
 }
 
 void test_classifier(std::string filename, std::vector<int> feature_subset) {
-    std::cout << "Testing Classifier" << std::endl;
+    std::cout << std::endl;
+    std::cout << std::endl;
+    std::cout << "Testing Classifier"<<std::endl;
     std::cout << "Input file name: "<< filename << std::endl;
     std::cout << "Feature subset: ";
     printVector(feature_subset);
-    std::cout << std::endl;
     
     
     // Load dataset
@@ -143,10 +144,12 @@ void test_classifier(std::string filename, std::vector<int> feature_subset) {
     std::cout << "Accuracy: with feature ";
     printVector(feature_subset);
     std::cout<< (accuracy * 100.0) << "%" << std::endl;
-    std::cout << "Time spent on leave-one-out evaluation: " << elapsed.count() << " seconds\n";
+    std::cout << "Time spent on classifier: " << elapsed.count() << " seconds\n";
 }
 
 void test_validator() {
+    std::cout << std::endl;
+    std::cout << std::endl;
     std::cout << "Testing Validator" << std::endl;
     //SMALL DATASET
     std::vector<std::vector<double>> data;
@@ -162,8 +165,11 @@ void test_validator() {
     double accuracy_small = validator.Validate(data, labels, feature_subset_small);
     auto end1 = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double> elapsed1 = end1 - start1;
-    std::cout << "Time spent on validation: " << elapsed1.count() << " seconds\n";
     std::cout << "Accuracy with features {3, 5, 7}: " << accuracy_small * 100 << "%\n";
+    std::cout << "Time spent on validation: " << elapsed1.count() << " seconds\n";
+    std::cout << std::endl;
+    std::cout << std::endl;
+    
     //LARGE DATASET
     std::vector<std::vector<double>> data2;
     std::vector<int> labels2;
@@ -175,9 +181,8 @@ void test_validator() {
     double accuracy_large = validator2.Validate(data2, labels2, feature_subset_large);
     auto end2 = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double> elapsed = end2 - start2;
-    std::cout << "Time spent on validation: " << elapsed.count() << " seconds\n";
-   
     std::cout << "Accuracy with features {1, 15, 27}: " << accuracy_large * 100 << "%\n";
+    std::cout << "Time spent on validation: " << elapsed.count() << " seconds\n";
 
 }
 
