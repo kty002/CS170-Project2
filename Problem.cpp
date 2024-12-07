@@ -47,7 +47,7 @@ void Problem::forward_selection(int total_features) {
 
             // check subset
             double score = evaluate(new_set);
-            std::cout << "  Using feature(s) " << Node(new_set).to_string() << " accuracy is " << score << "%\n";
+            std::cout << "  Using feature(s) " << Node(new_set).to_string() << " accuracy is " << score*100 << "%\n";
             if (score > best_node.score) {
                 best_node = Node(new_set, score);
             }
