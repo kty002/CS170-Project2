@@ -3,6 +3,7 @@
 #include "Classifier.cpp"
 #include <vector>
 #include <iostream>
+
 // #include <chrono> 
 // https://www.geeksforgeeks.org/measure-execution-time-function-cpp/
 // this might be helpful for tracking time
@@ -34,7 +35,7 @@ public:
 
             if (predicted_label == labels[i]) {
                 ++correct_predictions;
-        }
+            }
         //step display in the works
         // std::cout << "Step " << i + 1 << "/" << labels.size() << " " ;
         // std::cout << "Predicted = " << predicted_label << " " ;
@@ -51,7 +52,9 @@ public:
         // time goes here
         // std::cout << "Time spent on step: " << TimeSpentOnStep;
         }
-
+        //std::cout << correct_predictions << std::endl;
+        //std::cout << data.size() << std::endl;
+            
         return static_cast<double>(correct_predictions) / data.size();
     }
 

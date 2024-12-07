@@ -4,36 +4,9 @@
 #include <chrono>
 #include <cmath>
 #include <limits>
+#include "Read.cpp"
 #include "Problem.h"
 #include "Validator.cpp"
-
-// https://stackoverflow.com/questions/8365013/reading-line-from-text-file-and-putting-the-strings-into-a-vector
-// CODE BORROWED AND USED AS REFERENCE TO READ DATASET
-// readdataset opens a file and normalizes it into data
-void ReadDataset(const std::string& filename, std::vector<std::vector<double>>& data, std::vector<int>& labels) {
-    std::string line;
-    std::ifstream file(filename);
-    // std::ifstream myfile("OHenry.txt");
-
-    if(!file) //Always test the file open.
-    {
-        std::cout<<"Error opening output file"<< std::endl;
-        system("pause");
-        return;
-    }
-    while (std::getline(file, line)) {
-        std::istringstream stream(line);
-        std::vector<double> instance;
-        double value;
-        stream >> value;
-        labels.push_back(static_cast<int>(value)); //normalize values
-
-        while (stream >> value) {
-            instance.push_back(value);
-        }
-        data.push_back(instance);
-    }
-}
 
 // A helper function to extract only the specified features from an instance
 std::vector<double> extractFeatures(const std::vector<double>& full_features, const std::vector<int>& feature_subset) {
@@ -189,25 +162,41 @@ void test_validator() {
 void test_search() {
     //START OF NORMAL FEATURE SELECTION
     std::cout << "Welcome to Pranay Thakur's Feature Selection Algorithm.\n";
-    std::cout << "Please enter total number of features: ";
-    
-    //5 = f1, f2, f3, f4, f5
-    //1 = f1
-    int total_features;
-    std::cin >> total_features;
-
+    std::cout << "Type in the name of the file to test: ";
+    std::string fileName;
+    std::cin >> fileName;
+    Problem problem(fileName);
+    std::cout << std::endl;
     std::cout << "Type the number of the algorithm you want to run.\n";
+    std::cout << std::endl;
     std::cout << "1. Forward Selection\n";
     std::cout << "2. Backward Elimination\n";
     std::cout << "3. Bi-Directional Search (Custom Algorithm)\n";
-
+    std::cout << std::endl;
+    std::cout << std::endl;
+   
 
     //selects the algorithm
     int choice;
     std::cin >> choice;
 
-    Problem problem;
+    std::cout << "This dataset has "<< problem.features();
+    std::cout  <<" features. (not including the class attribute), with ";
+    std::cout << problem.instances() << " instances." << std::endl;
 
+    //5 = f1, f2, f3, f4, f5
+    //1 = f1
+    int total_features = problem.features();
+    
+    std::cout << "Please wait while I normalize the data...";
+    problem.normalize();
+    std::cout << "Done!" << std::endl;
+    
+    std::cout << std::endl;
+    
+    std::cout << "Running nearest neighbor with no features (default rate), using “leaving-one-out” evaluation," << std::endl;
+    std::cout << "I get an accuracy of " << problem.default_rate()*100<< "%"<<std::endl;
+    
     if (choice == 1) {
         problem.forward_selection(total_features);
     } 
@@ -224,12 +213,10 @@ void test_search() {
 
 int main() {
 
-    test_classifier("small-test-dataset.txt", {3, 5, 7});
-    test_classifier("large-test-dataset.txt", {1, 15, 27});
-
-
-    test_validator();
-
-    //test_search();
+    //test_classifier("small-test-dataset.txt", {3, 5, 7});
+    //test_classifier("large-test-dataset.txt", {1, 15, 27});
+    //test_classifier("output.txt", {1,2,3, 4, 5, 6});
+    //test_validator();
+    test_search();
     return 0;
 }

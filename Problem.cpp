@@ -2,8 +2,10 @@
 #include <iostream>
 #include <algorithm>
 #include <limits>
+#include "Validator.cpp"
 
 double Problem::evaluate(const std::vector<int>& feature_set) {
+    /*
     // returns random number
     static std::random_device rd;
     static std::mt19937 gen(rd());
@@ -14,6 +16,11 @@ double Problem::evaluate(const std::vector<int>& feature_set) {
 
     //rounds to tenths place
     return std::round(raw_score * 10.0) / 10.0;
+    */
+    Validator validator;
+    double accuracy = validator.Validate(data, labels, feature_set);
+    return accuracy;
+
 }
 
 void Problem::forward_selection(int total_features) {
@@ -197,4 +204,40 @@ void Problem::custom_algorithm(int total_features) {
     // Displaying final output
     std::cout << "Finished Bi-Directional Search!! The best feature subset is " << Node(forward_set).to_string()
               << ", which has an accuracy of " << forward_score << "%\n";
+}
+
+void Problem::normalize() {
+    if (data.empty() || data[0].empty()) {
+        // No data to normalize
+        return;
+    }
+
+    int num_instances = static_cast<int>(data.size());
+    int num_features = static_cast<int>(data[0].size());
+
+    for (int j = 0; j < num_features; ++j) {
+        // Find min and max for feature j
+        double min_val = data[0][j];
+        double max_val = data[0][j];
+
+        for (int i = 1; i < num_instances; ++i) {
+            if (data[i][j] < min_val) {
+                min_val = data[i][j];
+            }
+            if (data[i][j] > max_val) {
+                max_val = data[i][j];
+            }
+        }
+
+        double range = max_val - min_val;
+        if (range == 0.0) {
+            // All values are the same, no normalization needed
+            continue;
+        }
+
+        // Normalize feature j using min-max scaling
+        for (int i = 0; i < num_instances; ++i) {
+            data[i][j] = (data[i][j] - min_val) / range;
+        }
+    }
 }
