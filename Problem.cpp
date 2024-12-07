@@ -64,7 +64,7 @@ void Problem::forward_selection(int total_features) {
         }
     }
 
-    std::cout << "Finished search!! The best feature subset is " << Node(current_best_set).to_string() << ", which has an accuracy of " << current_best_score << "%\n";
+    std::cout << "Finished search!! The best feature subset is " << Node(current_best_set).to_string() << ", which has an accuracy of " << current_best_score*100 << "%\n";
 }
 
 
@@ -118,7 +118,7 @@ void Problem::backward_elimination(int total_features) {
 
     // Final output
     std::cout << "Finished search!! The best feature subset is " << Node(current_best_set).to_string()
-              << ", which has an accuracy of " << current_best_score << "%\n";
+              << ", which has an accuracy of " << current_best_score*100 << "%\n";
 }
 
 //ad custom algorithm
@@ -203,7 +203,7 @@ void Problem::custom_algorithm(int total_features) {
 
     // Displaying final output
     std::cout << "Finished Bi-Directional Search!! The best feature subset is " << Node(forward_set).to_string()
-              << ", which has an accuracy of " << forward_score << "%\n";
+              << ", which has an accuracy of " << forward_score*100 << "%\n";
 }
 
 void Problem::normalize() {
