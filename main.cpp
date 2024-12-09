@@ -211,6 +211,8 @@ void test_search() {
     }
 }
 /*
+Group: Pranay Thakur – pthak008 – Session 021, Arhum Shahid – ashah155 – Session 021, Kendrick Ty - kty002 - Session 021
+Dataset ID: https://www.kaggle.com/competitions/titanic/data
 Small Dataset Results
     Forward: Feature Subset: {5,3}, Acc: 0.92%
     Backward: Feature Subset: {2,3,4,5}, Acc: 0.83%
